@@ -1,1 +1,37 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function role() { return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role; }
+    function userData() { return get(/databases/$(database)/documents/users/$(request.auth.uid)).data; }
+    function isAdmin() { return role() in ['Founder','Admin']; }
+    function isManager() { return role() == 'Manager'; }
+    function isTeamLead() { return role() == 'TeamLead'; }
 
+    match /task_library/{id} {
+      allow read, write: if signedIn() && isAdmin();
+    }
+
+    match /tasks/{id} {
+      allow read: if signedIn() && (
+        isAdmin() ||
+        (isManager() && resource.data.department == userData().department) ||
+        (isTeamLead() && resource.data.teamId == userData().teamId) ||
+        (request.auth.uid in resource.data.assignees) ||
+        (request.auth.uid in resource.data.watchers)
+      );
+      allow create, update: if signedIn() && (
+        isAdmin() ||
+        (isManager() && request.resource.data.department == userData().department) ||
+        (isTeamLead() && request.resource.data.teamId == userData().teamId) ||
+        (request.auth.uid in resource.data.assignees)
+      );
+      allow delete: if false; // use soft delete only
+    }
+
+    match /users/{id} {
+      allow read: if signedIn() && (isAdmin() || request.auth.uid == id);
+      allow write: if signedIn() && isAdmin();
+    }
+  }
+}
