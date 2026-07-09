@@ -1,114 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Hridhiyam Business OS V4</title>
-<style>
-:root{--bg:#f7f5fb;--card:#fff;--ink:#070222;--muted:#6c5a7d;--brand:#25004d;--brand2:#6f3df4;--line:#e5d8ff;--green:#17a36b;--red:#ef4444;--orange:#f59e0b;--shadow:0 20px 55px rgba(37,0,77,.12)}
-*{box-sizing:border-box}body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:linear-gradient(120deg,#fbf9ff,#f0fff9);color:var(--ink)}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}.hidden{display:none!important}
-.login{min-height:100vh;display:grid;place-items:center;padding:24px}.login-card{width:min(980px,100%);display:grid;grid-template-columns:1.05fr .95fr;background:var(--card);border:1px solid var(--line);border-radius:28px;overflow:hidden;box-shadow:var(--shadow)}.login-left{background:linear-gradient(150deg,#16002e,#3b0a72);color:#fff;padding:52px}.login-left h1{font-size:42px;margin:0 0 14px}.login-left p{color:#e8dfff;line-height:1.7}.pill{display:inline-flex;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.2);padding:8px 13px;border-radius:999px;margin:7px 7px 0 0}.login-right{padding:44px}.demo-grid{display:grid;gap:12px}.user-btn{display:flex;justify-content:space-between;align-items:center;background:#fbf8ff;border:1px solid var(--line);border-radius:16px;padding:15px 16px;color:var(--ink)}.user-btn:hover{border-color:#9b6bff;transform:translateY(-1px)}.role{color:var(--muted);font-size:13px}.app{display:grid;grid-template-columns:282px 1fr;min-height:100vh}.side{background:#22004a;color:#fff;padding:24px;position:sticky;top:0;height:100vh}.brand h2{margin:0;font-size:25px}.brand p{margin:6px 0 24px;color:#cab9df}.nav{display:grid;gap:8px}.nav button{background:transparent;color:#fff;text-align:left;padding:14px 16px;border-radius:15px;font-weight:700}.nav button.active,.nav button:hover{background:rgba(255,255,255,.14)}.logout{position:absolute;bottom:24px;left:24px;right:24px;background:#fff;color:#22004a;padding:13px;border-radius:14px;font-weight:800}.main{padding:28px;min-width:0}.top{display:flex;gap:14px;align-items:center;margin-bottom:25px}.search{flex:1;background:#fff;border:1px solid var(--line);padding:16px 20px;border-radius:18px;box-shadow:0 8px 22px rgba(37,0,77,.04)}.me{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px 18px;min-width:220px}.page-title{font-size:34px;margin:8px 0 8px}.sub{color:var(--muted);margin-bottom:18px}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 13px 35px rgba(37,0,77,.06)}.card h3{margin:0 0 12px;font-size:16px;color:#5f4b73}.num{font-size:34px;font-weight:900}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}.table{width:100%;border-collapse:collapse;background:#fff;overflow:hidden}.table th{background:#ede4ff;text-align:left;font-size:12px;padding:13px}.table td{border-bottom:1px solid var(--line);padding:13px}.badge{display:inline-flex;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:800;background:#f2eaff}.high{background:#ffe8e8;color:#b91c1c}.med{background:#fff2d9;color:#8a5200}.low{background:#e7fff3;color:#08764d}.status{background:#eef2ff;color:#3730a3}.done{background:#dcfce7;color:#166534}.btn{background:#2f065d;color:#fff;border-radius:12px;padding:10px 13px;font-weight:800}.btn2{background:#f6f0ff;color:#2f065d;border:1px solid var(--line);border-radius:12px;padding:10px 13px;font-weight:800}.form{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.form input,.form select,.form textarea{width:100%;padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff}.section-head{display:flex;align-items:center;justify-content:space-between;margin:0 0 16px}.notice{background:#fff7ed;border:1px solid #fed7aa;border-radius:16px;padding:14px;color:#7c2d12}.dark{--bg:#0b0713;--card:#151023;--ink:#fff;--muted:#c9badd;--line:#332347;background:#080512;color:#fff}.dark .card,.dark .search,.dark .me,.dark .login-card{background:#151023}.dark .table td{border-color:#332347}.dark .table th{background:#2b1942}.dark .user-btn{background:#1b122b;color:#fff}.dark .btn2{background:#241636;color:#fff}
-@media(max-width:900px){.app{grid-template-columns:1fr}.side{position:relative;height:auto}.logout{position:static;margin-top:20px}.cards,.grid2,.form{grid-template-columns:1fr}.login-card{grid-template-columns:1fr}.top{flex-direction:column;align-items:stretch}}
-</style>
-</head>
-<body>
-<div id="login" class="login">
-  <div class="login-card">
-    <div class="login-left">
-      <h1>HRIDHIYAM Business OS</h1>
-      <p>V4 with real demo login. Top role dropdown removed. Employee cannot switch to admin. Data visibility is based on logged-in user role.</p>
-      <span class="pill">Role based access</span><span class="pill">Employee only own tasks</span><span class="pill">Team Lead team tasks</span><span class="pill">Admin full access</span>
-    </div>
-    <div class="login-right">
-      <h2>Login as demo user</h2>
-      <p class="sub">Production me ye Firebase/Supabase Auth se replace hoga.</p>
-      <div id="loginButtons" class="demo-grid"></div>
-    </div>
-  </div>
-</div>
-<div id="app" class="app hidden">
-  <aside class="side">
-    <div class="brand"><h2>HRIDHIYAM OS</h2><p>v4 Login + Permission</p></div>
-    <div id="nav" class="nav"></div>
-    <button class="logout" onclick="logout()">Logout</button>
-  </aside>
-  <main class="main">
-    <div class="top">
-      <input class="search" id="globalSearch" placeholder="Global search visible tasks, tags, employees..." oninput="render()" />
-      <div class="me" id="meBox"></div>
-      <button class="btn2" onclick="toggleDark()">Dark/Light</button>
-    </div>
-    <div id="view"></div>
-  </main>
-</div>
-<script>
-const users=[
-{id:'u1',name:'Sandhya',role:'Founder',dept:'Founder',team:[]},
-{id:'u2',name:'Priya',role:'Admin',dept:'Operations',team:['u3','u4','u5']},
-{id:'u3',name:'Neha',role:'Team Lead',dept:'Social Media',team:['u4']},
-{id:'u4',name:'Rahul',role:'Employee',dept:'Graphic Design',team:[]},
-{id:'u5',name:'Aman',role:'Employee',dept:'Video Editing',team:[]},
-{id:'u6',name:'Riya',role:'Intern',dept:'Social Media',team:[]}
-];
-let tasks=[
-{id:'TASK-000001',name:'Design Instagram Feed Post',business:'SIA Jewels',dept:'Graphic Design',assignees:['u4'],watchers:['u3'],priority:'High',status:'Ready',due:'2026-07-09',est:30,actual:0},
-{id:'TASK-000002',name:'Edit Product Reel',business:'SIA Jewels',dept:'Video Editing',assignees:['u5'],watchers:['u2'],priority:'High',status:'In Progress',due:'2026-07-09',est:45,actual:18},
-{id:'TASK-000003',name:'Plan Social Media Calendar',business:'SBX Media',dept:'Social Media',assignees:['u3','u6'],watchers:['u2'],priority:'Medium',status:'Review',due:'2026-07-10',est:90,actual:60},
-{id:'TASK-000004',name:'Monthly Finance Report',business:'SBX Media',dept:'Finance',assignees:['u2'],watchers:['u1'],priority:'Medium',status:'Ready',due:'2026-07-12',est:120,actual:0},
-{id:'TASK-000005',name:'Create Website Homepage Banner',business:'Westory',dept:'Graphic Design',assignees:['u4','u5'],watchers:['u2'],priority:'Low',status:'Revision',due:'2026-07-08',est:60,actual:75}
-];
-const library=[
-{code:'LIB-0001',name:'Daily Instagram Feed Post',business:'SIA Jewels',dept:'Graphic Design',freq:'Daily',priority:'High',sop:'Canva SOP'},
-{code:'LIB-0002',name:'Daily Reel Upload',business:'SIA Jewels',dept:'Social Media',freq:'Daily',priority:'Medium',sop:'Reel SOP'},
-{code:'LIB-0003',name:'Weekly Finance Review',business:'SBX Media',dept:'Finance',freq:'Weekly',priority:'High',sop:'Finance SOP'}
-];
-let current=null, page='dashboard';
-const adminRoles=['Founder','Admin'];
-function canAdmin(){return current && adminRoles.includes(current.role)}
-function visibleTasks(){
- if(!current) return [];
- let base=[];
- if(canAdmin()) base=tasks;
- else if(current.role==='Team Lead') base=tasks.filter(t=>t.assignees.includes(current.id)||t.watchers.includes(current.id)||t.assignees.some(a=>current.team.includes(a)));
- else base=tasks.filter(t=>t.assignees.includes(current.id)||t.watchers.includes(current.id));
- const q=(document.getElementById('globalSearch')?.value||'').toLowerCase();
- return q?base.filter(t=>JSON.stringify(t).toLowerCase().includes(q)):base;
-}
-function pages(){
- const common=[['dashboard','Dashboard'],['tasks',canAdmin()?'All Tasks':'My Tasks'],['attendance','Attendance'],['calendar','Calendar']];
- if(canAdmin()) return [['dashboard','Dashboard'],['businesses','Businesses'],['departments','Departments'],['employees','Employees'],['library','Task Library'],['tasks','All Tasks'],['generator','Task Generator'],['attendance','Attendance'],['calendar','Calendar'],['reports','Reports'],['settings','Settings']];
- if(current.role==='Team Lead') return [['dashboard','Dashboard'],['tasks','Team Tasks'],['attendance','Attendance'],['calendar','Calendar'],['reports','Team Report']];
- return common;
-}
-function login(id){current=users.find(u=>u.id===id);page='dashboard';document.getElementById('login').classList.add('hidden');document.getElementById('app').classList.remove('hidden');render()}
-function logout(){current=null;document.getElementById('app').classList.add('hidden');document.getElementById('login').classList.remove('hidden')}
-function toggleDark(){document.body.classList.toggle('dark')}
-function renderLogin(){document.getElementById('loginButtons').innerHTML=users.map(u=>`<button class="user-btn" onclick="login('${u.id}')"><b>${u.name}</b><span class="role">${u.role} · ${u.dept}</span></button>`).join('')}
-function render(){
- if(!current)return;document.getElementById('meBox').innerHTML=`<b>${current.name}</b><br><span class="role">${current.role} · ${current.dept}</span>`;
- document.getElementById('nav').innerHTML=pages().map(p=>`<button class="${page===p[0]?'active':''}" onclick="page='${p[0]}';render()">${p[1]}</button>`).join('');
- const allowed=pages().map(p=>p[0]); if(!allowed.includes(page)) page='dashboard';
- const v=document.getElementById('view');
- const map={dashboard,employees,library,tasks:tasksPage,generator,businesses,departments,attendance,calendar,reports,settings};
- v.innerHTML=(map[page]||dashboard)();
-}
-function title(t,s=''){return `<h1 class="page-title">${t}</h1><p class="sub">Current login: <b>${current.name}</b> (${current.role}). ${s}</p>`}
-function dashboard(){const vt=visibleTasks();return title('Dashboard','Permission based data visibility active.')+`<div class="cards"><div class="card"><h3>Visible Tasks</h3><div class="num">${vt.length}</div></div><div class="card"><h3>Pending</h3><div class="num">${vt.filter(t=>t.status!=='Completed').length}</div></div><div class="card"><h3>Completed</h3><div class="num">${vt.filter(t=>t.status==='Completed').length}</div></div><div class="card"><h3>Overdue</h3><div class="num">${vt.filter(t=>new Date(t.due)<new Date('2026-07-09')&&t.status!=='Completed').length}</div></div></div><div class="grid2"><div class="card"><h2>Permission Scope</h2><p><b>${current.role}</b>: ${canAdmin()?'All businesses, library, employees, reports and settings.':current.role==='Team Lead'?'Own tasks + watched tasks + team tasks only.':'Own assigned/watched tasks only.'}</p><p>Access UI hide se nahi, permission logic se control hai.</p></div><div class="card"><h2>Today Overview</h2>${['Ready','In Progress','Review','Revision','Completed'].map(s=>`<p>${s}: <b>${vt.filter(t=>t.status===s).length}</b></p>`).join('')}</div></div>`}
-function taskRows(arr){return `<table class="table"><thead><tr><th>Task</th><th>Business</th><th>Assignee</th><th>Priority</th><th>Status</th><th>Due</th><th>Action</th></tr></thead><tbody>${arr.map(t=>`<tr><td><b>${t.id}</b><br>${t.name}</td><td>${t.business}</td><td>${t.assignees.map(id=>users.find(u=>u.id===id).name).join(', ')}</td><td><span class="badge ${t.priority==='High'?'high':t.priority==='Medium'?'med':'low'}">${t.priority}</span></td><td><span class="badge status">${t.status}</span></td><td>${t.due}</td><td>${!canAdmin()?`<button class="btn2" onclick="updateTask('${t.id}')">Update</button>`:`<button class="btn2">Edit</button>`}</td></tr>`).join('')}</tbody></table>`}
-function tasksPage(){return title(canAdmin()?'All Tasks':current.role==='Team Lead'?'Team Tasks':'My Tasks','Employee cannot see other employee tasks.')+`<div class="card">${taskRows(visibleTasks())}</div>`}
-function updateTask(id){const t=tasks.find(x=>x.id===id); const flow=['Ready','In Progress','Review','Revision','Completed']; t.status=flow[(flow.indexOf(t.status)+1)%flow.length]; render()}
-function employees(){if(!canAdmin())return deny();return title('Employees','Admin only page.')+`<div class="card"><table class="table"><thead><tr><th>Name</th><th>Department</th><th>Role</th><th>Visible Tasks</th></tr></thead><tbody>${users.map(u=>`<tr><td><b>${u.name}</b></td><td>${u.dept}</td><td>${u.role}</td><td>${tasks.filter(t=>t.assignees.includes(u.id)||t.watchers.includes(u.id)).length}</td></tr>`).join('')}</tbody></table></div>`}
-function library(){if(!canAdmin())return deny();return title('Task Library','Master task library is admin-only.')+`<div class="card"><table class="table"><thead><tr><th>Code</th><th>Task</th><th>Business</th><th>Dept</th><th>Frequency</th><th>SOP</th></tr></thead><tbody>${library.map(l=>`<tr><td>${l.code}</td><td><b>${l.name}</b></td><td>${l.business}</td><td>${l.dept}</td><td>${l.freq}</td><td>${l.sop}</td></tr>`).join('')}</tbody></table></div>`}
-function generator(){if(!canAdmin())return deny();return title('Task Generator','Generate recurring tasks from library.')+`<div class="card"><div class="form"><select><option>SIA Jewels</option><option>SBX Media</option><option>Westory</option></select><select><option>Graphic Design</option><option>Video Editing</option><option>Social Media</option></select><select><option>Daily</option><option>Weekly</option><option>Monthly</option></select><select><option>Rahul</option><option>Aman</option><option>Neha</option></select><input type="date" value="2026-07-09"><button class="btn" onclick="alert('Demo: tasks generated in Work Queue')">Generate Tasks</button></div></div>`}
-function businesses(){if(!canAdmin())return deny();return simple('Businesses',['SIA Jewels','SBX Media','Westory','YouTube Channel'])}
-function departments(){if(!canAdmin())return deny();return simple('Departments',['Graphic Design','Video Editing','Social Media','Finance','Website','Customer Support'])}
-function reports(){if(!canAdmin()&&current.role!=='Team Lead')return deny();return title(canAdmin()?'Reports':'Team Report','Charts placeholder.')+`<div class="cards"><div class="card"><h3>Productivity</h3><div class="num">82%</div></div><div class="card"><h3>On Time</h3><div class="num">76%</div></div><div class="card"><h3>Review</h3><div class="num">${visibleTasks().filter(t=>t.status==='Review').length}</div></div><div class="card"><h3>Revision</h3><div class="num">${visibleTasks().filter(t=>t.status==='Revision').length}</div></div></div>`}
-function attendance(){return title('Attendance','Employee can mark own attendance.')+`<div class="card"><div class="section-head"><h2>Today Attendance</h2><button class="btn">Check In</button></div><table class="table"><tr><th>Check In</th><th>Break</th><th>Check Out</th><th>Hours</th><th>Status</th></tr><tr><td>10:02 AM</td><td>35 min</td><td>-</td><td>Running</td><td><span class="badge med">Present</span></td></tr></table></div>`}
-function calendar(){return title('Calendar','Visible due tasks only.')+`<div class="card">${visibleTasks().map(t=>`<p><b>${t.due}</b> — ${t.name}</p>`).join('')}</div>`}
-function settings(){if(!canAdmin())return deny();return title('Settings','Admin can configure roles, statuses, priorities and frequencies.')+`<div class="card"><div class="form"><input value="Ready, In Progress, Review, Revision, Completed"><input value="High, Medium, Low"><input value="Daily, Weekly, Monthly, Yearly"><button class="btn">Save Settings</button></div></div>`}
-function simple(name,items){return title(name,'Admin only management.')+`<div class="card">${items.map(x=>`<p>✓ <b>${x}</b></p>`).join('')}</div>`}
-function deny(){return title('Access Denied','This page is protected.')+`<div class="notice"><b>Permission blocked:</b> Aapke role ko is page ka access nahi hai. Production me ye security backend rules se bhi block hogi.</div>`}
-renderLogin();
-</script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#220044" />
+    <title>Hridhiyam Business OS v1.0</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
